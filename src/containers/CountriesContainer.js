@@ -18,24 +18,28 @@ const CountriesContainer = () => {
           .catch(error => console.error('Error:', error));
       }, []);
 
-      // Function to mark a country as visited, takes country as argument
+      // Function to mark a country as visited, takes country as argument...could also do if statement?
       const handleVisit = (country) => {
         setVisitedCountries((prevVisitedCountries) => [...prevVisitedCountries, country]);
         setCountries((prevCountries => prevCountries.filter(prevCountry => prevCountry.name.common !== country.name.common)));
       };
     // rendering
     return ( 
-        <>
+        <div className="container">
+        <div>
         <h2>Country List</h2>
         {/* returns two instances of my list componenet,
         first one displaying list of countries by passing countries state 
         and handleVisit function as props*/}
         <CountriesList countries={countries} handleVisit={handleVisit} />
+        </div>
+        <div>
         <h2>Visited Countries</h2>
          {/* second instance displays visited countries and 
          I pass the visitedContries state*/}
         <CountriesList countries={visitedCountries} />
-        </>
+        </div>
+        </div>
      );
 }
  
